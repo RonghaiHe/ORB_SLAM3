@@ -146,6 +146,7 @@ if __name__=="__main__":
     parser.add_argument('--verbose', help='print all evaluation data (otherwise, only the RMSE absolute translational error in meters after alignment will be printed)', action='store_true')
     parser.add_argument('--verbose2', help='print scale eror and RMSE absolute translational error in meters after alignment with and without scale correction', action='store_true')
     parser.add_argument('--need_scale', help='DIY, need to scale or not (monocular or not)', action='store_true')
+    parser.add_argument('--save_rmse', help='DIY, save rmse as a txt')
     args = parser.parse_args()
 
     first_list = associate.read_file_list(args.first_file, False)
@@ -185,6 +186,18 @@ if __name__=="__main__":
             print "absolute_translational_error.min %f m"%numpy.min(trans_errorGT)
             print "absolute_translational_error.max %f m"%numpy.max(trans_errorGT)
             print "max idx: %i" %numpy.argmax(trans_errorGT)
+
+            if args.save_rmse:
+                file = open(args.save_rmse, 'w')
+                file.write("compared_pose_pairs %d pairs\n"%(len(trans_errorGT)))
+                file.write("absolute_translational_error.rmse %f m\n"%numpy.sqrt(numpy.dot(trans_errorGT,trans_errorGT) / len(trans_errorGT)))
+                file.write("absolute_translational_error.mean %f m\n"%numpy.mean(trans_errorGT))
+                file.write("absolute_translational_error.median %f m\n"%numpy.median(trans_errorGT))
+                file.write("absolute_translational_error.std %f m\n"%numpy.std(trans_errorGT))
+                file.write("absolute_translational_error.min %f m\n"%numpy.min(trans_errorGT))
+                file.write("absolute_translational_error.max %f m\n"%numpy.max(trans_errorGT))
+                file.write("max idx: %i" %numpy.argmax(trans_errorGT))
+                file.close()
         else:
             print "compared_pose_pairs %d pairs"%(len(trans_error))
 
@@ -195,6 +208,18 @@ if __name__=="__main__":
             print "absolute_translational_error.min %f m"%numpy.min(trans_error)
             print "absolute_translational_error.max %f m"%numpy.max(trans_error)
             print "max idx: %i" %numpy.argmax(trans_error)
+
+            if args.save_rmse:
+                file = open(args.save_rmse, 'w')
+                file.write("compared_pose_pairs %d pairs\n"%(len(trans_error)))
+                file.write("absolute_translational_error.rmse %f m\n"%numpy.sqrt(numpy.dot(trans_error,trans_error) / len(trans_error)))
+                file.write("absolute_translational_error.mean %f m\n"%numpy.mean(trans_error))
+                file.write("absolute_translational_error.median %f m\n"%numpy.median(trans_error))
+                file.write("absolute_translational_error.std %f m\n"%numpy.std(trans_error))
+                file.write("absolute_translational_error.min %f m\n"%numpy.min(trans_error))
+                file.write("absolute_translational_error.max %f m\n"%numpy.max(trans_error))
+                file.write("max idx: %i" %numpy.argmax(trans_error))
+                file.close()
     else:
         # print "%f, %f " % (numpy.sqrt(numpy.dot(trans_error,trans_error) / len(trans_error)),  scale)
         # print "%f,%f" % (numpy.sqrt(numpy.dot(trans_error,trans_error) / len(trans_error)),  scale)

@@ -181,10 +181,10 @@ double calcDeviation(vector<int> v_values, double average)
     return sqrt(accum / total);
 }
 
-void Tracking::LocalMapStats2File()
+void Tracking::LocalMapStats2File(const string &strPathFile)
 {
     ofstream f;
-    f.open("LocalMapTimeStats.txt");
+    f.open(strPathFile + "LocalMapTimeStats.txt");
     f << fixed << setprecision(6);
     f << "#Stereo rect[ms], MP culling[ms], MP creation[ms], LBA[ms], KF culling[ms], Total[ms]" << endl;
     for(int i=0; i<mpLocalMapper->vdLMTotal_ms.size(); ++i)
@@ -196,7 +196,7 @@ void Tracking::LocalMapStats2File()
 
     f.close();
 
-    f.open("LBA_Stats.txt");
+    f.open(strPathFile + "LBA_Stats.txt");
     f << fixed << setprecision(6);
     f << "#LBA time[ms], KF opt[#], KF fixed[#], MP[#], Edges[#]" << endl;
     for(int i=0; i<mpLocalMapper->vdLBASync_ms.size(); ++i)
@@ -210,10 +210,10 @@ void Tracking::LocalMapStats2File()
     f.close();
 }
 
-void Tracking::TrackStats2File()
+void Tracking::TrackStats2File(const string &strPathFile)
 {
     ofstream f;
-    f.open("SessionInfo.txt");
+    f.open(strPathFile + "SessionInfo.txt");
     f << fixed;
     f << "Number of KFs: " << mpAtlas->GetAllKeyFrames().size() << endl;
     f << "Number of MPs: " << mpAtlas->GetAllMapPoints().size() << endl;
@@ -222,7 +222,7 @@ void Tracking::TrackStats2File()
 
     f.close();
 
-    f.open("TrackingTimeStats.txt");
+    f.open(strPathFile + "TrackingTimeStats.txt");
     f << fixed << setprecision(6);
 
     f << "#Image Rect[ms], Image Resize[ms], ORB ext[ms], Stereo match[ms], IMU preint[ms], Pose pred[ms], LM track[ms], KF dec[ms], Total[ms]" << endl;
@@ -260,15 +260,15 @@ void Tracking::TrackStats2File()
     f.close();
 }
 
-void Tracking::PrintTimeStats()
+void Tracking::PrintTimeStats(const string &strPathFile)
 {
     // Save data in files
-    TrackStats2File();
-    LocalMapStats2File();
+    TrackStats2File(strPathFile);
+    LocalMapStats2File(strPathFile);
 
 
     ofstream f;
-    f.open("ExecMean.txt");
+    f.open(strPathFile + "ExecMean.txt");
     f << fixed;
     //Report the mean and std of each one
     std::cout << std::endl << " TIME STATS in ms (mean$\\pm$std)" << std::endl;

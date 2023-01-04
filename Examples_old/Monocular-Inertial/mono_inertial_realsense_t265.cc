@@ -337,7 +337,7 @@ int main(int argc, char **argv)
         vImuMeas.clear();
     }
 
-    SLAM.Shutdown();
+    SLAM.Shutdown(argv[argc-1]);
 
     return 0;
 }

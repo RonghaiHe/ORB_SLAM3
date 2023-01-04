@@ -181,7 +181,7 @@ int main(int argc, char **argv)
     pipe.stop();
 
     // Stop all threads
-    SLAM.Shutdown();
+    SLAM.Shutdown(argv[argc-1]);
 
 
     return 0;

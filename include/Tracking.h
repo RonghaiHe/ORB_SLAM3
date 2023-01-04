@@ -177,9 +177,9 @@ public:
     bool mbWriteStats;
 
 #ifdef REGISTER_TIMES
-    void LocalMapStats2File();
-    void TrackStats2File();
-    void PrintTimeStats();
+    void LocalMapStats2File(const string &strPathFile);
+    void TrackStats2File(const string &strPathFile);
+    void PrintTimeStats(const string &strPathFile);
 
     vector<double> vdRectStereo_ms;
     vector<double> vdResizeImage_ms;

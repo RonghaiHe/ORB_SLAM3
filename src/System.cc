@@ -512,7 +512,7 @@ void System::ResetActiveMap()
     mbResetActiveMap = true;
 }
 
-void System::Shutdown()
+void System::Shutdown(const string &strPathFile)
 {
     {
         unique_lock<mutex> lock(mMutexReset);
@@ -555,7 +555,7 @@ void System::Shutdown()
         pangolin::BindToContext("ORB-SLAM2: Map Viewer");*/
 
 #ifdef REGISTER_TIMES
-    mpTracker->PrintTimeStats();
+    mpTracker->PrintTimeStats(strPathFile);
 #endif
 
 

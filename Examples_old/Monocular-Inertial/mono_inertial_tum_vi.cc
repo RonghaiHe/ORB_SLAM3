@@ -244,7 +244,7 @@ int main(int argc, char **argv)
 
     // cout << "ttrack_tot = " << ttrack_tot << std::endl;
     // Stop all threads
-    SLAM.Shutdown();
+    SLAM.Shutdown(argv[argc-1]);
 
 
     // Tracking time statistics
@@ -253,8 +253,8 @@ int main(int argc, char **argv)
 
     if (bFileName)
     {
-        const string kf_file =  "kf_" + string(argv[argc-1]) + ".txt";
-        const string f_file =  "f_" + string(argv[argc-1]) + ".txt";
+        const string kf_file =  string(argv[argc-1]) + "kf_" + ".txt";
+        const string f_file =  string(argv[argc-1]) + "f_" + ".txt";
         SLAM.SaveTrajectoryEuRoC(f_file);
         SLAM.SaveKeyFrameTrajectoryEuRoC(kf_file);
     }

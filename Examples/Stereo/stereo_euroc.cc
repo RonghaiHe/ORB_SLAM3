@@ -166,13 +166,13 @@ int main(int argc, char **argv)
 
     }
     // Stop all threads
-    SLAM.Shutdown();
+    SLAM.Shutdown(argv[argc-1]);
 
     // Save camera trajectory
     if (bFileName)
     {
-        const string kf_file =  "kf_" + string(argv[argc-1]) + ".txt";
-        const string f_file =  "f_" + string(argv[argc-1]) + ".txt";
+        const string kf_file =  string(argv[argc-1]) + "kf_" + ".txt";
+        const string f_file =  string(argv[argc-1]) + "f_" + ".txt";
         SLAM.SaveTrajectoryEuRoC(f_file);
         SLAM.SaveKeyFrameTrajectoryEuRoC(kf_file);
     }
@@ -193,6 +193,8 @@ void LoadImages(const string &strPathLeft, const string &strPathRight, const str
     vTimeStamps.reserve(5000);
     vstrImageLeft.reserve(5000);
     vstrImageRight.reserve(5000);
+    string s;
+    getline(fTimes,s);
     while(!fTimes.eof())
     {
         string s;
@@ -200,7 +202,7 @@ void LoadImages(const string &strPathLeft, const string &strPathRight, const str
         if(!s.empty())
         {
             stringstream ss;
-            ss << s;
+            ss << s.substr(0, 19);
             vstrImageLeft.push_back(strPathLeft + "/" + ss.str() + ".png");
             vstrImageRight.push_back(strPathRight + "/" + ss.str() + ".png");
             double t;

@@ -15,11 +15,11 @@ done
 echo "Run Stereo-EuRoC"
 for i in $(ls -lt |awk '{print $9}')
 do
-        /home/herh/ORB_SLAM3/Examples/Stereo/stereo_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo/EuRoC.yaml ./${i} ./${i}/mav0/cam0/data.csv ./${i}/Stereo/
+        /home/herh/ORB_SLAM3/Examples/Stereo/stereo_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo/EuRoC.yaml ./${i} ./${i}/mav0/cam1/data.csv ./${i}/Stereo/
 done
 
 echo "Run StereoInertial-EuRoC"
 for i in $(ls -lt |awk '{print $9}')
 do
-        /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml ./${i} ./${i}/mav0/cam0/data.csv ./${i}/StereoInertial/
+        /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml ./${i} ./${i}/mav0/cam1/data.csv ./${i}/StereoInertial/
 done

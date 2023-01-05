@@ -360,7 +360,7 @@ void Viewer::Run()
                 mpSystem->DeactivateLocalizationMode();
 
             // Stop all threads
-            mpSystem->Shutdown();
+            mpSystem->Shutdown("");
 
             // Save camera trajectory
             mpSystem->SaveTrajectoryEuRoC("CameraTrajectory.txt");

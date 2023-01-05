@@ -1,4 +1,4 @@
-cd /data/herh/ORB_SLAM3/TUM_VI/
+cd /data/herh/ORB_SLAM3/TUM_VI_1024/
 
 echo "Run Mono-TUM-VI"
 for i in $(ls -lt |awk '{print $9}')

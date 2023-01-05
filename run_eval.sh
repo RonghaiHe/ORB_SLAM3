@@ -11,8 +11,13 @@ for j in ${camera_list[*]}
 do
         for i in $(ls -lt |awk '{print $9}')
         do
-                python2 /home/herh/ORB_SLAM3/evaluation/evaluate_ate_scale.py "./${i}/mav0/state_groundtruth_estimate0/data.csv" "./${i}/${j}/f_.txt" --plot "./${i}/${j}/compare_f" --verbose --need_scale --save_rmse "./${i}/${j}/info_f.txt"
-
-                python2 /home/herh/ORB_SLAM3/evaluation/evaluate_ate_scale.py "./${i}/mav0/state_groundtruth_estimate0/data.csv" "./${i}/${j}/kf_.txt" --plot "./${i}/${j}/compare_kf" --verbose --need_scale --save_rmse "./${i}/${j}/info_kf.txt"
+                if [ ${i:0:1}=="M" ]
+                then
+                        python2 /home/herh/ORB_SLAM3/evaluation/evaluate_ate_scale.py "./${i}/mav0/state_groundtruth_estimate0/data.csv" "./${i}/${j}/f_.txt" --plot "./${i}/${j}/compare_f" --verbose --need_scale --save_rmse "./${i}/${j}/info_f.txt"
+                        python2 /home/herh/ORB_SLAM3/evaluation/evaluate_ate_scale.py "./${i}/mav0/state_groundtruth_estimate0/data.csv" "./${i}/${j}/kf_.txt" --plot "./${i}/${j}/compare_kf" --verbose --need_scale --save_rmse "./${i}/${j}/info_kf.txt"
+                else
+                        python2 /home/herh/ORB_SLAM3/evaluation/evaluate_ate_scale.py "./${i}/mav0/state_groundtruth_estimate0/data.csv" "./${i}/${j}/f_.txt" --plot "./${i}/${j}/compare_f" --verbose  --save_rmse "./${i}/${j}/info_f.txt"
+                        python2 /home/herh/ORB_SLAM3/evaluation/evaluate_ate_scale.py "./${i}/mav0/state_groundtruth_estimate0/data.csv" "./${i}/${j}/kf_.txt" --plot "./${i}/${j}/compare_kf" --verbose --save_rmse "./${i}/${j}/info_kf.txt"
+                fi
         done
 done

@@ -15,11 +15,27 @@ done
 echo "Run Stereo-EuRoC"
 for i in $(ls -lt |awk '{print $9}')
 do
-        /home/herh/ORB_SLAM3/Examples/Stereo/stereo_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo/EuRoC.yaml ./${i} ./${i}/mav0/cam1/data.csv ./${i}/Stereo/
+        if [ ${j}=="V1_02_medium" ]
+        then
+                /home/herh/ORB_SLAM3/Examples/Stereo/stereo_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo/EuRoC.yaml ./${i} /home/herh/ORB_SLAM3/Examples/Stereo/EuRoC_TimeStamps/V102.txt ./${i}/Stereo/
+        elif [ ${j}=="V2_03_difficult" ]
+        then
+                /home/herh/ORB_SLAM3/Examples/Stereo/stereo_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo/EuRoC.yaml ./${i} /home/herh/ORB_SLAM3/Examples/Stereo/EuRoC_TimeStamps/V203.txt ./${i}/Stereo/
+        else 
+                /home/herh/ORB_SLAM3/Examples/Stereo/stereo_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo/EuRoC.yaml ./${i} ./${i}/mav0/cam1/data.csv ./${i}/Stereo/
+        fi
 done
 
 echo "Run StereoInertial-EuRoC"
 for i in $(ls -lt |awk '{print $9}')
 do
-        /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml ./${i} ./${i}/mav0/cam1/data.csv ./${i}/StereoInertial/
+        if [ ${j}=="V1_02_medium" ]
+        then
+                /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml ./${i} /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC_TimeStamps/V102.txt ./${i}/StereoInertial/
+        elif [ ${j}=="V2_03_difficult" ]
+        then
+                /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml ./${i} /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC_TimeStamps/V203.txt ./${i}/StereoInertial/
+        else 
+                /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml ./${i} ./${i}/mav0/cam1/data.csv ./${i}/StereoInertial/
+        fi
 done

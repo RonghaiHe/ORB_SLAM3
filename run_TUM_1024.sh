@@ -5,9 +5,9 @@ for i in $(ls -lt |awk '{print $9}')
 do
         if [ ${i:8:3}=="out" ]
         then
-                /home/herh/ORB_SLAM3/Examples/Monocular/mono_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_far_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/times.txt ./${i}/dso/Mono/
+                /home/herh/ORB_SLAM3/Examples/Monocular/mono_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_far_1024.yaml ./${i}/dso/cam0/images /home/herh/ORB_SLAM3/Examples/Monocular/TUM_TimeStamps/${i}_512.txt ./${i}/dso/Mono/
         else
-                /home/herh/ORB_SLAM3/Examples/Monocular/mono_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/times.txt ./${i}/dso/Mono/
+                /home/herh/ORB_SLAM3/Examples/Monocular/mono_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_1024.yaml ./${i}/dso/cam0/images /home/herh/ORB_SLAM3/Examples/Monocular/TUM_TimeStamps/${i}_512.txt ./${i}/dso/Mono/
         fi
 done
 
@@ -16,9 +16,9 @@ for i in $(ls -lt |awk '{print $9}')
 do
         if [ ${i:8:3}=="out" ]
         then
-                /home/herh/ORB_SLAM3/Examples/Monocular-Inertial/mono_inertial_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_far_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/times.txt ./${i}/dso/imu.txt ./${i}/dso/MonoInertial/
+                /home/herh/ORB_SLAM3/Examples/Monocular-Inertial/mono_inertial_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_far_1024.yaml ./${i}/dso/cam0/images /home/herh/ORB_SLAM3/Examples/Monocular-Inertial/TUM_TimeStamps/${i}_512.txt ./${i}/dso/imu.txt ./${i}/dso/MonoInertial/
         else
-                /home/herh/ORB_SLAM3/Examples/Monocular-Inertial/mono_inertial_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/times.txt ./${i}/dso/imu.txt ./${i}/dso/MonoInertial/
+                /home/herh/ORB_SLAM3/Examples/Monocular-Inertial/mono_inertial_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_1024.yaml ./${i}/dso/cam0/images /home/herh/ORB_SLAM3/Examples/Monocular-Inertial/TUM_TimeStamps/${i}_512.txt ./${i}/dso/imu.txt ./${i}/dso/MonoInertial/
         fi
 done
 
@@ -27,9 +27,9 @@ for i in $(ls -lt |awk '{print $9}')
 do
         if [ ${i:8:3}=="out" ]
         then
-                /home/herh/ORB_SLAM3/Examples/Stereo/stereo_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_far_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/images ./${i}/dso/cam1/times.txt ./${i}/dso/Stereo/
+                /home/herh/ORB_SLAM3/Examples/Stereo/stereo_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_far_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/images /home/herh/ORB_SLAM3/Examples/Stereo/TUM_TimeStamps/${i}_512.txt ./${i}/dso/Stereo/
         else
-                /home/herh/ORB_SLAM3/Examples/Stereo/stereo_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/images ./${i}/dso/cam1/times.txt ./${i}/dso/Stereo/
+                /home/herh/ORB_SLAM3/Examples/Stereo/stereo_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/images /home/herh/ORB_SLAM3/Examples/Stereo/TUM_TimeStamps/${i}_512.txt ./${i}/dso/Stereo/
         fi
 done
 
@@ -38,8 +38,8 @@ for i in $(ls -lt |awk '{print $9}')
 do
         if [ ${i:8:3}=="out" ]
         then
-                /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_far_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/images ./${i}/dso/cam1/times.txt ./${i}/dso/imu.txt ./${i}/dso/StereoInertial/
+                /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_far_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/images /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM_TimeStamps/${i}_512.txt ./${i}/dso/imu.txt ./${i}/dso/StereoInertial/
         else
-                /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/images ./${i}/dso/cam1/times.txt ./${i}/dso/imu.txt ./${i}/dso/StereoInertial/
+                /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_tum_vi  /home/herh/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM-VI_1024.yaml ./${i}/dso/cam0/images ./${i}/dso/cam1/images /home/herh/ORB_SLAM3/Examples/Stereo-Inertial/TUM_TimeStamps/${i}_512.txt ./${i}/dso/imu.txt ./${i}/dso/StereoInertial/
         fi
 done

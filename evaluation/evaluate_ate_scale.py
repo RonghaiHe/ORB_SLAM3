@@ -42,10 +42,11 @@ trajectory and the estimated trajectory.
 """
 
 import sys
+sys.path.append('/home/herh/.local/lib/python2.7/site-packages')
 import numpy
 import argparse
 import associate
-sys.path.append('/home/herh/.local/lib/python2.7/site-packages')
+
 def align(model,data):
     """Align two trajectories using the method of Horn (closed-form).
     

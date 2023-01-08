@@ -5,7 +5,7 @@ echo "evaluate the trajectory"
 # python2 evaluate_ate_scale.py "/home/ronghai/datasets/TUM-VI/dataset-calib-cam1_512_16/dso/gt_imu.csv" "/home/ronghai/datasets/TUM-VI/dataset-calib-cam1_512_16/dso/ORB-SLAM3-MonoInertial/f_.txt" --plot "/home/ronghai/datasets/TUM-VI/dataset-calib-cam1_512_16/dso/ORB-SLAM3-MonoInertial/compare" --verbose --need_scale --save_rmse "/home/ronghai/datasets/TUM-VI/dataset-calib-cam1_512_16/dso/ORB-SLAM3-MonoInertial/info.txt"
 
 cd /data/herh/ORB_SLAM3/EuRoC/
-camera_list=(Mono, MonoInertial, Stereo, StereoInertial) 
+camera_list=(Mono MonoInertial Stereo StereoInertial) 
 
 for j in ${camera_list[*]}
 do

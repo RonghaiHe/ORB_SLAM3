@@ -136,7 +136,7 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser(description='''
     This script computes the absolute trajectory error from the ground truth trajectory and the estimated trajectory. 
     ''')
-    parser.add_argument('first_file', help='ground truth trajectory (format: timestamp tx ty tz qx qy qz qw)')
+    parser.add_argument('first_file', help='ground truth trajectory (format: timestamp tx ty tz qx qy qz qw) could input more files splitted by space')
     parser.add_argument('second_file', help='estimated trajectory (format: timestamp tx ty tz qx qy qz qw)')
     parser.add_argument('--offset', help='time offset added to the timestamps of the second file (default: 0.0)',default=0.0)
     parser.add_argument('--scale', help='scaling factor for the second trajectory (default: 1.0)',default=1.0)
@@ -150,7 +150,12 @@ if __name__=="__main__":
     parser.add_argument('--save_rmse', help='DIY, save rmse as a txt')
     args = parser.parse_args()
 
-    first_list = associate.read_file_list(args.first_file, False)
+    # first_list = associate.read_file_list(args.first_file, False)
+    first_list = {}
+    for File in args.first_file.split(' '):
+        temp = associate.read_file_list(File, False)
+        first_list = dict(first_list, **temp)
+
     second_list = associate.read_file_list(args.second_file, False)
 
     matches = associate.associate(first_list, second_list,float(args.offset),float(args.max_difference))    

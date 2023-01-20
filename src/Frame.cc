@@ -686,7 +686,8 @@ vector<size_t> Frame::GetFeaturesInArea(const float &x, const float  &y, const f
         return vIndices;
     }
 
-    const bool bCheckLevels = (minLevel>0) || (maxLevel>=0);
+    // const bool bCheckLevels = (minLevel>0) || (maxLevel>=0); !!!
+    const bool bCheckLevels = (minLevel>=0) || (maxLevel>=0);
 
     for(int ix = nMinCellX; ix<=nMaxCellX; ix++)
     {
@@ -913,7 +914,8 @@ void Frame::ComputeStereoMatches()
             vector<float> vDists;
             vDists.resize(2*L+1);
 
-            const float iniu = scaleduR0+L-w;
+            // const float iniu = scaleduR0+L-w; !!!
+            const float iniu = scaleduR0-L-w;
             const float endu = scaleduR0+L+w+1;
             if(iniu<0 || endu >= mpORBextractorRight->mvImagePyramid[kpL.octave].cols)
                 continue;

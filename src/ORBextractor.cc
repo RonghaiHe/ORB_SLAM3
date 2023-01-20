@@ -480,7 +480,7 @@ namespace ORB_SLAM3
     void ExtractorNode::DivideNode(ExtractorNode &n1, ExtractorNode &n2, ExtractorNode &n3, ExtractorNode &n4)
     {
         const int halfX = ceil(static_cast<float>(UR.x-UL.x)/2);
-        const int halfY = ceil(static_cast<float>(BR.y-UL.y)/2);
+        const int halfY = ceil(static_cast<float>(BR.y-UL.y)/2); // bug but doesn't matter !!!
 
         //Define boundaries of childs
         n1.UL = UL;
@@ -816,7 +816,8 @@ namespace ORB_SLAM3
                 {
                     const float iniX =minBorderX+j*wCell;
                     float maxX = iniX+wCell+6;
-                    if(iniX>=maxBorderX-6)
+                    // if(iniX>=maxBorderX-6) !!!
+                    if(iniX>=maxBorderX-3)
                         continue;
                     if(maxX>maxBorderX)
                         maxX = maxBorderX;

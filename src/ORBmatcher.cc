@@ -233,7 +233,8 @@ namespace ORB_SLAM3
         vector<int> rotHist[HISTO_LENGTH];
         for(int i=0;i<HISTO_LENGTH;i++)
             rotHist[i].reserve(500);
-        const float factor = 1.0f/HISTO_LENGTH;
+        // const float factor = 1.0f/HISTO_LENGTH; !!!
+        const float factor = HISTO_LENGTH/360.0f; 
 
         // We perform the matching over ORB that belong to the same vocabulary node (at a certain level)
         DBoW2::FeatureVector::const_iterator KFit = vFeatVecKF.begin();
@@ -653,7 +654,8 @@ namespace ORB_SLAM3
         vector<int> rotHist[HISTO_LENGTH];
         for(int i=0;i<HISTO_LENGTH;i++)
             rotHist[i].reserve(500);
-        const float factor = 1.0f/HISTO_LENGTH;
+        // const float factor = 1.0f/HISTO_LENGTH; !!!
+        const float factor = HISTO_LENGTH/360.0f; 
 
         vector<int> vMatchedDistance(F2.mvKeysUn.size(),INT_MAX);
         vector<int> vnMatches21(F2.mvKeysUn.size(),-1);
@@ -781,7 +783,8 @@ namespace ORB_SLAM3
         for(int i=0;i<HISTO_LENGTH;i++)
             rotHist[i].reserve(500);
 
-        const float factor = 1.0f/HISTO_LENGTH;
+        // const float factor = 1.0f/HISTO_LENGTH; !!!
+        const float factor = HISTO_LENGTH/360.0f; 
 
         int nmatches = 0;
 
@@ -953,7 +956,8 @@ namespace ORB_SLAM3
         for(int i=0;i<HISTO_LENGTH;i++)
             rotHist[i].reserve(500);
 
-        const float factor = 1.0f/HISTO_LENGTH;
+        // const float factor = 1.0f/HISTO_LENGTH; !!!
+        const float factor = HISTO_LENGTH/360.0f; 
 
         DBoW2::FeatureVector::const_iterator f1it = vFeatVec1.begin();
         DBoW2::FeatureVector::const_iterator f2it = vFeatVec2.begin();
@@ -1082,6 +1086,7 @@ namespace ORB_SLAM3
                                                                         : (bestIdx2 < pKF2 -> NLeft) ? pKF2 -> mvKeys[bestIdx2]
                                                                                                      : pKF2 -> mvKeysRight[bestIdx2 - pKF2 -> NLeft];
                         vMatches12[idx1]=bestIdx2;
+                        vbMatched2[bestIdx2]=true; // !!! Add
                         nmatches++;
 
                         if(mbCheckOrientation)
@@ -1125,6 +1130,7 @@ namespace ORB_SLAM3
                     continue;
                 for(size_t j=0, jend=rotHist[i].size(); j<jend; j++)
                 {
+                    vbMatched2[vMatches12[rotHist[i][j]]] = false; // !!! Add
                     vMatches12[rotHist[i][j]]=-1;
                     nmatches--;
                 }
@@ -1681,7 +1687,8 @@ namespace ORB_SLAM3
         vector<int> rotHist[HISTO_LENGTH];
         for(int i=0;i<HISTO_LENGTH;i++)
             rotHist[i].reserve(500);
-        const float factor = 1.0f/HISTO_LENGTH;
+        // const float factor = 1.0f/HISTO_LENGTH; !!!
+        const float factor = HISTO_LENGTH/360.0f; 
 
         const Sophus::SE3f Tcw = CurrentFrame.GetPose();
         const Eigen::Vector3f twc = Tcw.inverse().translation();
@@ -1897,7 +1904,8 @@ namespace ORB_SLAM3
         vector<int> rotHist[HISTO_LENGTH];
         for(int i=0;i<HISTO_LENGTH;i++)
             rotHist[i].reserve(500);
-        const float factor = 1.0f/HISTO_LENGTH;
+        // const float factor = 1.0f/HISTO_LENGTH; !!!
+        const float factor = HISTO_LENGTH/360.0f; 
 
         const vector<MapPoint*> vpMPs = pKF->GetMapPointMatches();
 

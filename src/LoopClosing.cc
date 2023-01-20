@@ -396,7 +396,8 @@ bool LoopClosing::NewDetectCommonRegions()
             mbLoopDetected = mnLoopNumCoincidences >= 3;
             mnLoopNumNotFound = 0;
 
-            if(!mbLoopDetected)
+            // if(!mbLoopDetected) !!!
+            if(mbLoopDetected)
             {
                 cout << "PR: Loop detected with Reffine Sim3" << endl;
             }
@@ -478,7 +479,7 @@ bool LoopClosing::NewDetectCommonRegions()
     }
 
     //TODO: This is only necessary if we use a minimun score for pick the best candidates
-    const vector<KeyFrame*> vpConnectedKeyFrames = mpCurrentKF->GetVectorCovisibleKeyFrames();
+    // const vector<KeyFrame*> vpConnectedKeyFrames = mpCurrentKF->GetVectorCovisibleKeyFrames(); !!! no need
 
     // Extract candidates from the bag of words
     vector<KeyFrame*> vpMergeBowCand, vpLoopBowCand;
@@ -559,7 +560,8 @@ bool LoopClosing::DetectAndReffineSim3FromLastKF(KeyFrame* pCurrentKF, KeyFrame*
 
         if(numOptMatches > nProjOptMatches)
         {
-            g2o::Sim3 gScw_estimation(gScw.rotation(), gScw.translation(),1.0);
+            // g2o::Sim3 gScw_estimation(gScw.rotation(), gScw.translation(),1.0); update by optimized POSE
+            g2o::Sim3 gScw_estimation = gScm * gSwm.inverse();
 
             vector<MapPoint*> vpMatchedMP;
             vpMatchedMP.resize(mpCurrentKF->GetMapPointMatches().size(), static_cast<MapPoint*>(NULL));
@@ -1446,7 +1448,7 @@ void LoopClosing::MergeLocal()
         {
             g2oCorrectedSiw = g2oCorrectedScw;
         }
-        pKFi->mTcwMerge  = pKFi->GetPose();
+        // pKFi->mTcwMerge  = pKFi->GetPose(); no need !!!
 
         // Update keyframe pose with corrected Sim3. First transform Sim3 to SE3 (scale translation)
         double s = g2oCorrectedSiw.scale();
@@ -1844,7 +1846,8 @@ void LoopClosing::MergeLocal2()
         //cout << "curr merge KF id: " << mpCurrentKF->mnId << endl;
         //cout << "curr tracking KF id: " << mpTracker->GetLastKeyFrame()->mnId << endl;
         bool bScaleVel=false;
-        if(s_on!=1)
+        // if(s_on!=1) !!!
+        if(s_on!=1.0f)
             bScaleVel=true;
         mpAtlas->GetCurrentMap()->ApplyScaledRotation(T_on,s_on,bScaleVel);
         mpTracker->UpdateFrameIMU(s_on,mpCurrentKF->GetImuBias(),mpTracker->GetLastKeyFrame());
@@ -1909,7 +1912,7 @@ void LoopClosing::MergeLocal2()
             pCurrentMap->AddMapPoint(pMPi);
             pMergeMap->EraseMapPoint(pMPi);
         }
-
+        mpAtlas->SetMapBad(pMergeMap); // !!!
         // Save non corrected poses (already merged maps)
         vector<KeyFrame*> vpKFs = pCurrentMap->GetAllKeyFrames();
         for(KeyFrame* pKFi : vpKFs)

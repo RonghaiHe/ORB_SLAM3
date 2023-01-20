@@ -75,6 +75,7 @@ namespace ORB_SLAM3 {
                     mvSigma2.push_back(F.mvLevelSigma2[kp.octave]);
 
                     //Bearing vector should be normalized
+                    //  !!! not the same as papers in normalization
                     cv::Point3f cv_br = mpCamera->unproject(kp.pt);
                     cv_br /= cv_br.z;
                     bearingVector_t br(cv_br.x,cv_br.y,cv_br.z);
